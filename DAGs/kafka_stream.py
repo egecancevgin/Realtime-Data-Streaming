@@ -37,10 +37,8 @@ def format_data(result):
     data["first_name"] = result["name"]["first"]
     data["last_name"] = result["name"]["last"]
     data["gender"] = result["gender"]
-    data["address"] = f"{str(
-        location["street"]["number"]}, {location["street"]["name"]}, "\
-        f"{location["city"]}, {location["state"]}, {location["country"]}"
-    )
+    data["address"] = f"{str(location["street"]["number"])}, {location["street"]["name"]}, "\
+                      f"{location["city"]}, {location["state"]}, {location["country"]}" 
     data["postcode"] = location["postcode"]
     data["email"] = result["email"]
     data["username"] = result["login"]["username"]
