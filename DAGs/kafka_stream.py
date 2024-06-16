@@ -13,8 +13,8 @@ default_args = {
 }
 
 
-def stream_data():
-    """ Streams data, DAG runs it. 
+def get_data():
+    """ Gets synthetic data from randomuser.me api. 
         param: :
         returns: 
     """
@@ -22,7 +22,29 @@ def stream_data():
     request = requests.get("https://randomuser.me/api/")
     results = request.json()["results"][0]
     # Prints prettier with indentation
-    print(json.dumps(results, indent=3))
+    # print(json.dumps(results, indent=3))
+    return results
+
+
+def format_data(result):
+    """ Formats the input response data for Kafka 
+        :param result: Json response data
+        returns: Formatted data
+    """
+    # Initializing a Dictionary object
+    data = {}
+    data["first_name"] = result["name"]["first"]
+    data["last_name"] = result["name"]["last"]
+    
+
+
+def stream_data():
+    """ Streams the data, DAG runs it. 
+        :param:
+        :returns:
+    """
+    pass
+
 
 
 stream_data()
