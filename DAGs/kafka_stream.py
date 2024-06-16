@@ -33,17 +33,31 @@ def format_data(result):
     """
     # Initializing a Dictionary object
     data = {}
+    location = result["location"]
     data["first_name"] = result["name"]["first"]
     data["last_name"] = result["name"]["last"]
-    
-
+    data["gender"] = result["gender"]
+    data["address"] = f"{str(
+        location["street"]["number"]}, {location["street"]["name"]}, "\
+        f"{location["city"]}, {location["state"]}, {location["country"]}"
+    )
+    data["postcode"] = location["postcode"]
+    data["email"] = result["email"]
+    data["username"] = result["login"]["username"]
+    data["dob"] = result["dob"]["date"]
+    data["registered_date"] = result["registered"]["date"]
+    data["phone"] = result["phone"]
+    data["picture"] = result["picture"]["medium"]
+    return data
 
 def stream_data():
     """ Streams the data, DAG runs it. 
         :param:
         :returns:
     """
-    pass
+    result = get_data()
+    formatted_data = format_data(result)
+    print(json.dumps(formatted_data, indent=3))
 
 
 
